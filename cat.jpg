@@ -3,7 +3,7 @@
 # A bash script to commit crap to GitHub every x minutes
 
 interval=300
-token="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"
+token="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 while true
 do
