@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# A bash script to commit crap to GitHub every x minutes
+
+interval=300
+token="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"
+
+while true
+do
+    timestamp=$(date +%Y-%m-%d_%H-%M-%S)
+    
+    git clone https://github.com/owais-redhunt/test
+    cd test/
+    git remote set-url origin https://$token@github.com/owais-redhunt/test.git/
+    cp config.json config-$timestamp.json
+
+    git config --global user.email "owais.shaikh@redhuntlabs.com"
+    git config --global user.name "Playground box"
+
+    echo "Scanning secret locally..."
+    cd ~/difftest-secmon/new/secretsinfile/
+    ./secretsinfile -file ~/periodic_committer/test/config-$timestamp.json 
+
+    cd ~/periodic_committer/test/
+
+    git add .
+    git commit -m "tester commit $timestamp"
+    echo "Pushing..."
+    git push 
+    cd ../
+    echo "Pushed! :)"
+    sleep $interval
+done
