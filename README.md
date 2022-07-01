@@ -1,2 +1,3 @@
 # Keypoke capturing test
-Ignore
+
+ignore if u r smart
